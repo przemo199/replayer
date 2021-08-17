@@ -1,7 +1,9 @@
-[functions]
-directory="./src/functions"
+[build]
 base = "."
-publish = "./build"
+publish = "./build/"
 command = "npm run build"
 NODE_VERSION=14
 NPM_VERSION=7
+
+[functions]
+directory="./src/functions"
