@@ -4,9 +4,9 @@
   "author": "Przemek Kaminski <przemyslaw.m.kaminski@gmail.com> (https://www.linkedin.com/in/przemekkaminski/)",
   "browserslist": {
     "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+      "last 3 chrome version",
+      "last 3 firefox version",
+      "last 3 safari version"
     ],
     "development": [
       "last 1 chrome version",
@@ -15,6 +15,17 @@
     ]
   },
   "dependencies": {
+    "bootstrap": "^5.1.0",
+    "cloudinary": "^1.26.3",
+    "mongodb": "^4.1.0",
+    "react": "^17.0.2",
+    "react-bootstrap": "^2.0.0-beta.5",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "typescript": "^4.3.5",
+    "web-vitals": "^1.1.2"
+  },
+  "devDependencies": {
     "@netlify/functions": "^0.7.2",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
@@ -23,17 +34,12 @@
     "@types/node": "^12.20.19",
     "@types/react": "^17.0.18",
     "@types/react-dom": "^17.0.9",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
-    "typescript": "^4.3.5",
-    "web-vitals": "^1.1.2"
-  },
-  "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.29.2",
     "@typescript-eslint/parser": "^4.29.2",
     "eslint": "^7.32.0",
-    "eslint-plugin-react": "^7.24.0"
+    "eslint-plugin-react": "^7.24.0",
+    "stylelint": "^13.13.1",
+    "stylelint-config-standard": "^22.0.0"
   },
   "private": true,
   "scripts": {
@@ -41,5 +47,8 @@
     "eject": "react-scripts eject",
     "start": "react-scripts start",
     "test": "react-scripts test"
+  },
+  "stylelint": {
+    "extends": "stylelint-config-standard"
   }
 }
