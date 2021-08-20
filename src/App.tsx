@@ -42,12 +42,11 @@ function App(): JSX.Element {
       });
       const response = await request.json();
       if (response.asset_id) {
-        const data = new FormData();
-        data.append("privateUrl", response.secure_url);
         const req = await fetch("/api/save",{
           method: "POST",
-          body: data
+          body: JSON.stringify({"privateUrl": response.secure_url})
         });
+
         const res = await req.json();
 
         setFileUrl(window.location.href + "/" + res.resourceId);

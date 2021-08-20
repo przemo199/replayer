@@ -8,19 +8,17 @@ const handler: Handler = async (event, context) => {
     return { statusCode: 405, body: "Method Not Allowed" };
   }
 
+  if (!event.body) {
+    return { statusCode: 400, body: "Bad Request" };
+  }
+
   const date = (new Date()).toISOString().replace(/\.|:|-|T|Z/g, "");
   let dateHex = parseInt(date).toString(36);
   // @ts-ignore
   const client = new MongoClient(uri, {useNewUrlParser: true, useUnifiedTopology: true});
   await client.connect();
-  const collection = client.db("replayerDB").collection("videos");
-  if (event.body) {
-    return {
-      statusCode: 200,
-      body: event.body
-    };
-  }
-  const body = JSON.parse(event.body!);
+  const collection = client.db("replayerDB").collection("media");
+  const body = JSON.parse(event.body);
   while (collection.find({"resourceId": dateHex}).limit(1)) {
     dateHex = (parseInt(dateHex, 36) + 1).toString(36);
   }
