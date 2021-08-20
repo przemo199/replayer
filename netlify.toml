@@ -3,13 +3,12 @@
   publish = "./build/"
   command = "npm run build"
 
-
 [build.processing]
   skip_processing = true
 
 [build.environment]
-  NODE_VERSION = 14
-  NPM_VERSION = 7
+  NODE_VERSION = "14"
+  NPM_VERSION = "7"
 
 [functions]
   directory = "./src/functions"
