@@ -14,6 +14,12 @@ const handler: Handler = async (event, context) => {
   const client = new MongoClient(uri, {useNewUrlParser: true, useUnifiedTopology: true});
   await client.connect();
   const collection = client.db("replayerDB").collection("videos");
+  if (event.body) {
+    return {
+      statusCode: 200,
+      body: event.body
+    };
+  }
   const body = JSON.parse(event.body!);
   while (collection.find({"resourceId": dateHex}).limit(1)) {
     dateHex = (parseInt(dateHex, 36) + 1).toString(36);
