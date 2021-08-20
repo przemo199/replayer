@@ -19,7 +19,7 @@ const handler: Handler = async (event, context) => {
   await client.connect();
   const collection = client.db("replayerDB").collection("media");
   const body = JSON.parse(event.body);
-  while (collection.find({"resourceId": dateHex}).limit(1)) {
+  while (await collection.find({"resourceId": dateHex}).limit(1).hasNext()) {
     dateHex = (parseInt(dateHex, 36) + 1).toString(36);
   }
   await collection.insertOne({"resourceId": dateHex, "privateUrl": body.privateUrl});
