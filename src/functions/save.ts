@@ -8,7 +8,8 @@ const handler: Handler = async (event, context) => {
     return { statusCode: 405, body: "Method Not Allowed" };
   }
 
-  const date = (new Date()).toISOString().replaceAll(/\.|:|-|T|Z/g, "");
+  let date = (new Date()).toISOString();
+  date = date.replaceAll(/\.|:|-|T|Z/g, "");
   let dateHex = parseInt(date).toString(36);
   // @ts-ignore
   const client = new MongoClient(uri, {useNewUrlParser: true, useUnifiedTopology: true});
