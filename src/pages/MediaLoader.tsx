@@ -15,6 +15,7 @@ function MediaLoader(): JSX.Element {
           body: JSON.stringify({"resourceId": resourceId})
         });
         const response = await request.json();
+        console.log(response);
 
         if (response.privateUrl) {
           if (response.type.includes("image")) {
@@ -24,6 +25,7 @@ function MediaLoader(): JSX.Element {
           if (response.type.includes("video")) {
             setResourceType("video");
           }
+
           setPrivateUrl(response.privateUrl);
         }
       }
