@@ -22,7 +22,7 @@ const handler: Handler = async (event, context) => {
 
   return {
     statusCode: 200,
-    body: JSON.stringify({document: result?.privateUrl || null})
+    body: JSON.stringify({document: result || null})
   };
 };
 
