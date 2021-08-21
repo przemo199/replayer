@@ -57,7 +57,7 @@ function Upload(): JSX.Element {
 
         const res = await req.json();
 
-        setFileUrl(window.location.origin + "watch/" + res.resourceId);
+        setFileUrl(window.location.origin + "/watch/" + res.resourceId);
         setFile(null);
       }
       setIsUploading(false);
