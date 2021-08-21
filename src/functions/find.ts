@@ -5,35 +5,24 @@ const uri = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PAS
 
 const handler: Handler = async (event, context) => {
   if (event.httpMethod !== "POST") {
-    return { statusCode: 405, body: "Method Not Allowed" };
+    return {statusCode: 405, body: "Method Not Allowed"};
   }
 
   if (!event.body) {
-    return { statusCode: 400, body: "Bad Request" };
+    return {statusCode: 400, body: "Bad Request"};
   }
 
-  const date = (new Date()).toISOString().replace(/\.|:|-|T|Z/g, "");
-  let dateHex = parseInt(date).toString(36);
   // @ts-ignore
   const client = new MongoClient(uri, {useNewUrlParser: true, useUnifiedTopology: true});
   await client.connect();
   const collection = client.db("replayerDB").collection("media");
   const body = JSON.parse(event.body);
-  while (await collection.find({"resourceId": dateHex}).limit(1).hasNext()) {
-    dateHex = (parseInt(dateHex, 36) + 1).toString(36);
-  }
-  const newDocument = {"resourceId": dateHex};
-  const keys = Object.keys(body);
-  for (const key of keys) {
-    // @ts-ignore
-    newDocument[key] = body[key];
-  }
-  await collection.insertOne(newDocument);
+  const result = await collection.findOne({"resourceId": body.resourceId});
   await client.close();
 
   return {
     statusCode: 200,
-    body: JSON.stringify({resourceId: dateHex})
+    body: JSON.stringify({privateUrl: result?.privateUrl || null})
   };
 };
 
