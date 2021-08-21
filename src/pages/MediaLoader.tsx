@@ -17,7 +17,9 @@ function MediaLoader(): JSX.Element {
         const response = await request.json();
 
         const document = response.document;
-
+        console.log(response);
+        console.log(document);
+        console.log(document.type);
         if (document) {
           if (document.type.includes("image")) {
             setResourceType("image");
