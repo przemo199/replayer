@@ -20,11 +20,9 @@ const handler: Handler = async (event, context) => {
   const result = await collection.findOne({"resourceId": body.resourceId});
   await client.close();
 
-  console.log(result);
-
   return {
     statusCode: 200,
-    body: JSON.stringify({privateUrl: result?.privateUrl || null})
+    body: JSON.stringify({document: result?.privateUrl || null})
   };
 };
 

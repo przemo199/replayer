@@ -15,18 +15,19 @@ function MediaLoader(): JSX.Element {
           body: JSON.stringify({"resourceId": resourceId})
         });
         const response = await request.json();
-        console.log(response);
 
-        if (response.privateUrl) {
-          if (response.type.includes("image")) {
+        const document = response.document;
+
+        if (document) {
+          if (document.type.includes("image")) {
             setResourceType("image");
           }
 
-          if (response.type.includes("video")) {
+          if (document.type.includes("video")) {
             setResourceType("video");
           }
 
-          setPrivateUrl(response.privateUrl);
+          setPrivateUrl(document.privateUrl);
         }
       }
     }
