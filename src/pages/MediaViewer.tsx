@@ -1,10 +1,16 @@
 import React, {useEffect, useState} from "react";
 import {useLocation} from "react-router-dom";
 
-function MediaLoader(): JSX.Element {
+interface Resource {
+  privateUrl: string;
+  name: string;
+  type: string;
+  size: number;
+}
+
+function MediaViewer(): JSX.Element {
   const path = useLocation().pathname;
-  const [privateUrl, setPrivateUrl] = useState("");
-  const [resourceType, setResourceType] = useState("");
+  const [resource, setResource] = useState<Resource | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -18,18 +24,10 @@ function MediaLoader(): JSX.Element {
         });
         const response = await request.json();
 
-        const document = response.document;
+        const document = response.result;
 
         if (document) {
-          if (document.type.includes("image")) {
-            setResourceType("image");
-          }
-
-          if (document.type.includes("video")) {
-            setResourceType("video");
-          }
-
-          setPrivateUrl(document.privateUrl);
+          setResource(resource);
           setIsLoading(false);
         }
       }
@@ -48,12 +46,12 @@ function MediaLoader(): JSX.Element {
 
   return (
     <React.Fragment>
-      {(privateUrl && resourceType === "image") && <img className="media" src={privateUrl} alt="requested image"/>}
-      {(privateUrl && resourceType === "video") && <video className="media" src={privateUrl} autoPlay controls/>}
-      {!privateUrl && !isLoading && <h1>It looks like what you are looking for does not exist</h1>}
+      {resource?.type.includes("image") && <img className="media" src={resource.privateUrl} alt="requested image"/>}
+      {resource?.type.includes("video") && <video className="media" src={resource.privateUrl} autoPlay controls/>}
+      {!isLoading && <h1>It looks like the resource you are looking for does not exist</h1>}
       {isLoading && <h1>Loading..</h1>}
     </React.Fragment>
   );
 }
 
-export default MediaLoader;
+export default MediaViewer;

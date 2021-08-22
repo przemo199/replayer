@@ -17,12 +17,12 @@ const handler: Handler = async (event, context) => {
   await client.connect();
   const collection = client.db("replayerDB").collection("media");
   const body = JSON.parse(event.body);
-  const result = await collection.findOne({"resourceId": body.resourceId});
+  const document = await collection.findOne({"resourceId": body.resourceId});
   await client.close();
 
   return {
     statusCode: 200,
-    body: JSON.stringify({document: result || null})
+    body: JSON.stringify({result: document || null})
   };
 };
 

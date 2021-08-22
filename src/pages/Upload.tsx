@@ -2,6 +2,7 @@ import React, {useRef, useState} from "react";
 import MediaShowcase from "../components/MediaShowcase";
 import {Button} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import {Link} from "react-router-dom";
 
 const cloudName = "replayer-store";
 const cloudinaryEndpoint = `https://api.cloudinary.com/v1_1/${cloudName}/auto/upload`;
@@ -57,12 +58,12 @@ function Upload(): JSX.Element {
 
         const res = await req.json();
 
-        setFileUrl(window.location.origin + "/watch/" + res.resourceId);
+        setFileUrl("/watch/" + res.resourceId);
         setFile(null);
+        const end = (new Date()).getTime();
+        console.log("Uploaded in " + (end - start) + "ms");
       }
       setIsUploading(false);
-      const end = (new Date()).getTime();
-      console.log("Uploaded in " + (end - start) + "ms");
     }
   };
 
@@ -70,8 +71,8 @@ function Upload(): JSX.Element {
     <React.Fragment>
       {fileUrl &&
       <div>
-        You can access your media here:<br />
-        <a className="App-link" href={fileUrl}>{" " + fileUrl}</a>
+        <p>You can access your media here:</p><br />
+        <Link to={fileUrl}>{" " + window.location.origin +  fileUrl}</Link>
       </div>
       }
       <div className="selector-container" onClick={getFile}>
