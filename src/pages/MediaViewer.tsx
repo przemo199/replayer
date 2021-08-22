@@ -59,10 +59,10 @@ function MediaViewer(): JSX.Element {
         <video className="media" src={resource.privateUrl} autoPlay controls/>}
       {resource &&
         <div>
-          <p>name: {resource.name}</p>
-          <p>type: {resource.type}</p>
-          <p>size: {(Math.round(resource.size / (1024 * 1024) * 100)) / 100 + "MB"}</p>
-          <p>timestamp: {getISODate(resource)}</p>
+          <p style={{display: "inline-block"}}>name: {resource.name} </p>
+          <p style={{display: "inline-block"}}>type: {resource.type} </p><br />
+          <p style={{display: "inline-block"}}>size: {(Math.round(resource.size / (1024 * 1024) * 100)) / 100 + "MB"} </p>
+          <p style={{display: "inline-block"}}>timestamp: {getISODate(resource)} </p>
         </div>
       }
       {!resource && !isLoading && <h1>It looks like the resource you are looking for does not exist</h1>}
