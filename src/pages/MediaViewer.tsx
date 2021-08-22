@@ -18,16 +18,17 @@ function MediaViewer(): JSX.Element {
       setIsLoading(true);
       const resourceId = getResourceId();
       if (resourceId) {
+
         const request = await fetch("/api/find", {
           method: "POST",
           body: JSON.stringify({"resourceId": resourceId})
         });
-        const response = await request.json();
 
+        const response = await request.json();
         const document = response.result;
 
         if (document) {
-          setResource(resource);
+          setResource(document);
           setIsLoading(false);
         }
       }

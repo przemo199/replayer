@@ -71,7 +71,7 @@ function Upload(): JSX.Element {
     <React.Fragment>
       {fileUrl &&
       <div>
-        <p>You can access your media here:</p><br />
+        <p>You can access your media here:</p>
         <Link to={fileUrl}>{" " + window.location.origin +  fileUrl}</Link>
       </div>
       }
