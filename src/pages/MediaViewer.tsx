@@ -1,14 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {useLocation} from "react-router-dom";
-import {ObjectId} from "mongodb";
+import {Resource} from "../interfaces";
 
-interface Resource {
-  _id: ObjectId;
-  privateUrl: string;
-  name: string;
-  type: string;
-  size: number;
-}
+const apiGetEndpoint = "/api/get";
 
 function MediaViewer(): JSX.Element {
   const path = useLocation().pathname;
@@ -21,7 +15,7 @@ function MediaViewer(): JSX.Element {
       const resourceId = getResourceId();
       if (resourceId) {
 
-        const request = await fetch("/api/find", {
+        const request = await fetch(apiGetEndpoint, {
           method: "POST",
           body: JSON.stringify({"resourceId": resourceId})
         });

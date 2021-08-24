@@ -5,11 +5,11 @@ const uri = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PAS
 
 const handler: Handler = async (event, context) => {
   if (event.httpMethod !== "POST") {
-    return { statusCode: 405, body: "Method Not Allowed" };
+    return {statusCode: 405, body: "Method Not Allowed"};
   }
 
   if (!event.body) {
-    return { statusCode: 400, body: "Bad Request" };
+    return {statusCode: 400, body: "Bad Request"};
   }
 
   const date = (new Date()).toISOString().replace(/\.|:|-|T|Z/g, "");

@@ -22,12 +22,13 @@
     "@typescript-eslint"
   ],
   "rules": {
+    "react/jsx-indent": [2, 2, {"indentLogicalExpressions": true}],
     "indent": [
       "error",
       2,
       {
         "SwitchCase": 1,
-        "MemberExpression": 0
+        "ignoredNodes": ["JSXElement"]
       }
     ],
     "linebreak-style": [

@@ -8,9 +8,9 @@ const cloudName = "replayer-store";
 const cloudinaryEndpoint = `https://api.cloudinary.com/v1_1/${cloudName}/auto/upload`;
 const acceptedFormats = ".jpg, .png, .gif, .bmp, .mp4, .mkv, .webp";
 const uploadPreset = "replayer_preset";
-const apiSaveEndpoint = "/api/save";
+const apiPutEndpoint = "/api/put";
 
-function Upload(): JSX.Element {
+function UploadPage(): JSX.Element {
   const [file, setFile] = useState<File | null>(null);
   const [fileUrl, setFileUrl] = useState<string | null>(null);
   const [isUploading, setIsUploading] = useState<boolean>(false);
@@ -44,13 +44,13 @@ function Upload(): JSX.Element {
       const response = await request.json();
 
       if (response.asset_id) {
-        const req = await fetch(apiSaveEndpoint, {
+        const req = await fetch(apiPutEndpoint, {
           method: "POST",
           body: JSON.stringify({
-            "privateUrl": response.secure_url,
-            "name": file.name,
-            "type": file.type,
-            "size": file.size
+            privateUrl: response.secure_url,
+            name: file.name,
+            type: file.type,
+            size: file.size
           })
         });
 
@@ -68,10 +68,10 @@ function Upload(): JSX.Element {
   return (
     <React.Fragment>
       {fileUrl &&
-      <div>
-        <p>You can access your media here:</p>
-        <Link to={fileUrl}>{" " + window.location.origin +  fileUrl}</Link>
-      </div>
+        <div>
+          <p>You can access your media here:</p>
+          <Link to={fileUrl}>{" " + window.location.origin + fileUrl}</Link>
+        </div>
       }
       <div className="selector-container" onClick={getFile}>
         <input type="file" className="file-selector" accept={acceptedFormats} ref={fileSelector}
@@ -79,21 +79,21 @@ function Upload(): JSX.Element {
         {!file && <h1>+</h1>}
         {file && <MediaShowcase file={file} />}
         {isUploading &&
-        <div className="loading-screen">
-          <h1>
-            Uploading...
-          </h1>
-        </div>
+          <div className="loading-screen">
+            <h1>
+              Uploading...
+            </h1>
+          </div>
         }
       </div>
 
       {file &&
-      <Button className="btn-primary" onClick={sendFile}>
-        Send file
-      </Button>
+        <Button className="btn-primary" onClick={sendFile}>
+          Send file
+        </Button>
       }
     </React.Fragment>
   );
 }
 
-export default Upload;
+export default UploadPage;

@@ -2,9 +2,10 @@ import React from "react";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import "./App.css";
 import NavBar from "./components/NavBar";
-import Upload from "./pages/Upload";
+import UploadPage from "./pages/UploadPage";
 import MediaViewer from "./pages/MediaViewer";
-import Welcome from "./pages/Welcome";
+import WelcomePage from "./pages/WelcomePage";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   return (
@@ -17,10 +18,13 @@ function App() {
               <MediaViewer />
             </Route>
             <Route path="/upload">
-              <Upload />
+              <UploadPage />
+            </Route>
+            <Route path="/browse">
+              <SearchPage />
             </Route>
             <Route path="/">
-              <Welcome />
+              <WelcomePage />
             </Route>
           </Switch>
         </header>

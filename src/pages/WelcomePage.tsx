@@ -1,6 +1,6 @@
 import React from "react";
 
-function Welcome() {
+function WelcomePage() {
   return (
     <React.Fragment>
       <h1>Welcome!</h1>
@@ -10,4 +10,4 @@ function Welcome() {
   );
 }
 
-export default Welcome;
+export default WelcomePage;
