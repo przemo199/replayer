@@ -19,8 +19,6 @@ function Upload(): JSX.Element {
   const getFile = () => {
     if (fileSelector.current) {
       fileSelector.current.click();
-    } else {
-      alert("no file selector found");
     }
   };
 

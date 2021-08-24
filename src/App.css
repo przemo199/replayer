@@ -38,6 +38,7 @@
   width: 60vw;
   height: 34vw;
   object-fit: contain;
+  margin-top: calc(16px + 1.5em);
 }
 
 .selected-media {
@@ -77,4 +78,9 @@
 .navbar a:hover {
   color: lightgrey;
   background-color: black;
+}
+
+.inline {
+  display: inline-block;
+  font-size: 0.7em;
 }
