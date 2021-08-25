@@ -19,7 +19,7 @@ const handler: Handler = async (event, context) => {
   await client.connect();
   const collection = client.db("replayerDB").collection("media");
   const body = JSON.parse(event.body);
-  const query = collection.find({name: body.query})
+  const query = collection.find({name: new RegExp(`${body.query}`)})
     .sort({_id: -1}).skip(pageSize * (body.page - 1));
 
   let hasMore = true;
