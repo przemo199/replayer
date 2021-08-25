@@ -27,7 +27,7 @@ const handler: Handler = async (event, context) => {
     hasMore = false;
   }
 
-  const documents = query.limit(pageSize).toArray();
+  const documents = await query.limit(pageSize).toArray();
   await client.close();
 
   return {

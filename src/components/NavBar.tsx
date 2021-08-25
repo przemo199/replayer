@@ -8,6 +8,7 @@ function NavBar(): JSX.Element {
     <Navbar bg="dark" variant="dark">
       <Link to="/">replayer</Link>
       <Link to="/upload">Upload</Link>
+      <Link to="/browse">Browse</Link>
     </Navbar>
   );
 }
