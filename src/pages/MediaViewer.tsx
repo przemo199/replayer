@@ -10,7 +10,7 @@ function MediaViewer(): JSX.Element {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    async function loadPrivateUrl() {
+    async function fetchPrivateUrl() {
       setIsLoading(true);
       const resourceId = getResourceId();
       if (resourceId) {
@@ -30,7 +30,7 @@ function MediaViewer(): JSX.Element {
       }
     }
 
-    loadPrivateUrl();
+    fetchPrivateUrl();
   }, [path]);
 
   const getResourceId = (): string => {

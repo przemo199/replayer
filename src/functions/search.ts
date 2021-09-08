@@ -2,8 +2,8 @@ import {Handler} from "@netlify/functions";
 import {MongoClient} from "mongodb";
 
 const uri = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@cluster0.k6gbu.mongodb.net/test_database?retryWrites=true&w=majority`;
-
-const pageSize = 50;
+const dbName = "replayerDB";
+const collectionName = "media";
 
 const handler: Handler = async (event, context) => {
   if (event.httpMethod !== "POST") {
@@ -17,22 +17,20 @@ const handler: Handler = async (event, context) => {
   // @ts-ignore
   const client = new MongoClient(uri, {useNewUrlParser: true, useUnifiedTopology: true});
   await client.connect();
-  const collection = client.db("replayerDB").collection("media");
+  const collection = client.db(dbName).collection(collectionName);
   const body = JSON.parse(event.body);
   const query = collection.find({name: new RegExp(`${body.query}`)})
-    .sort({_id: -1}).skip(pageSize * (body.page - 1));
+    .sort({_id: -1}).skip(body.startIndex);
 
   let hasMore = true;
-  if (await query.count() <= pageSize) {
-    hasMore = false;
-  }
+  if (await query.count() <= body.endIndex) hasMore = false;
 
-  const documents = await query.limit(pageSize).toArray();
+  const documents = await query.limit(body.startIndex - body.endIndex).toArray();
   await client.close();
 
   return {
     statusCode: 200,
-    body: JSON.stringify({documents: documents || null, hasMore})
+    body: JSON.stringify({documents: documents.length > 0 ? documents : null, hasMore})
   };
 };
 

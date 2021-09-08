@@ -2,6 +2,8 @@ import {Handler} from "@netlify/functions";
 import {MongoClient} from "mongodb";
 
 const uri = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@cluster0.k6gbu.mongodb.net/test_database?retryWrites=true&w=majority`;
+const dbName = "replayerDB";
+const collectionName = "media";
 
 const handler: Handler = async (event, context) => {
   if (event.httpMethod !== "POST") {
@@ -13,27 +15,27 @@ const handler: Handler = async (event, context) => {
   }
 
   const date = (new Date()).toISOString().replace(/\.|:|-|T|Z/g, "");
-  let dateHex = parseInt(date).toString(36);
+  let dateRadix36 = parseInt(date).toString(36);
   // @ts-ignore
   const client = new MongoClient(uri, {useNewUrlParser: true, useUnifiedTopology: true});
   await client.connect();
-  const collection = client.db("replayerDB").collection("media");
+  const collection = client.db(dbName).collection(collectionName);
   const body = JSON.parse(event.body);
-  while (await collection.find({"resourceId": dateHex}).limit(1).hasNext()) {
-    dateHex = (parseInt(dateHex, 36) + 1).toString(36);
+  while (await collection.find({"resourceId": dateRadix36}).limit(1).hasNext()) {
+    dateRadix36 = (parseInt(dateRadix36, 36) + 1).toString(36);
   }
-  const newDocument = {"resourceId": dateHex};
-  const keys = Object.keys(body);
-  for (const key of keys) {
-    // @ts-ignore
-    newDocument[key] = body[key];
-  }
-  await collection.insertOne(newDocument);
+  // const newDocument = {"resourceId": dateRadix36};
+  // const keys = Object.keys(body);
+  // for (const key of keys) {
+  //   // @ts-ignore
+  //   newDocument[key] = body[key];
+  // }
+  await collection.insertOne({"resourceId": dateRadix36, ...body});
   await client.close();
 
   return {
     statusCode: 200,
-    body: JSON.stringify({resourceId: dateHex})
+    body: JSON.stringify({resourceId: dateRadix36})
   };
 };
 

@@ -2,6 +2,8 @@ import {Handler} from "@netlify/functions";
 import {MongoClient} from "mongodb";
 
 const uri = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@cluster0.k6gbu.mongodb.net/test_database?retryWrites=true&w=majority`;
+const dbName = "replayerDB";
+const collectionName = "media";
 
 const handler: Handler = async (event, context) => {
   if (event.httpMethod !== "POST") {
@@ -15,7 +17,7 @@ const handler: Handler = async (event, context) => {
   // @ts-ignore
   const client = new MongoClient(uri, {useNewUrlParser: true, useUnifiedTopology: true});
   await client.connect();
-  const collection = client.db("replayerDB").collection("media");
+  const collection = client.db(dbName).collection(collectionName);
   const body = JSON.parse(event.body);
   const document = await collection.findOne({"resourceId": body.resourceId});
   await client.close();
