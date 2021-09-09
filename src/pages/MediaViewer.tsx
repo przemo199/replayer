@@ -4,9 +4,10 @@ import {MediaResource} from "../interfaces";
 
 const apiGetEndpoint = "/api/get";
 
-function MediaViewer(props: any): JSX.Element {
+function MediaViewer(): JSX.Element {
   const path = useLocation().pathname;
-  const id = useParams();
+  // @ts-ignore
+  const {id} = useParams<string>();
   const [resource, setResource] = useState<MediaResource | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
