@@ -89,3 +89,9 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.media-card {
+  width: 12rem;
+  background-color: rgb(35, 35, 35);
+  margin: 2px;
+}
