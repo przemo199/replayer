@@ -84,3 +84,8 @@
   display: inline-block;
   font-size: 0.7em;
 }
+
+.media-flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}

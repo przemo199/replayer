@@ -7,7 +7,7 @@ function MediaCard(props: Resource): JSX.Element {
     <Card style={{ width: "10rem" }}>
       {props.type.includes("video") && <video src={props.privateUrl} />}
       {props.type.includes("image") && <img alt={props.name} src={props.privateUrl} />}
-      <Card.Title>{props.name}</Card.Title>
+      <Card.Title style={{backgroundColor: "rgb(35, 35, 35)"}}>{props.name}</Card.Title>
     </Card>
   );
 }
