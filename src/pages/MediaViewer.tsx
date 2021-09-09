@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from "react";
-import {useLocation} from "react-router-dom";
-import {Resource} from "../interfaces";
+import {useLocation, useParams} from "react-router-dom";
+import {MediaResource} from "../interfaces";
 
 const apiGetEndpoint = "/api/get";
 
-function MediaViewer(): JSX.Element {
+function MediaViewer(props: any): JSX.Element {
   const path = useLocation().pathname;
-  const [resource, setResource] = useState<Resource | null>(null);
+  const id = useParams();
+  const [resource, setResource] = useState<MediaResource | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -14,10 +15,9 @@ function MediaViewer(): JSX.Element {
       setIsLoading(true);
       const resourceId = getResourceId();
       if (resourceId) {
-
         const request = await fetch(apiGetEndpoint, {
           method: "POST",
-          body: JSON.stringify({"resourceId": resourceId})
+          body: JSON.stringify({"resourceId": id})
         });
 
         const response = await request.json();
@@ -41,11 +41,11 @@ function MediaViewer(): JSX.Element {
     return "";
   };
 
-  const calculateISODate = (r: Resource): string => {
+  const calculateISODate = (r: MediaResource): string => {
     return (new Date(parseInt(r._id.toString().substring(0,8), 16) * 1000)).toISOString();
   };
 
-  const calculateFileSize = (r: Resource): string  => {
+  const calculateFileSize = (r: MediaResource): string  => {
     return (Math.round(r.size / (1024 * 1024) * 100)) / 100 + "MB";
   };
 

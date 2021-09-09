@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from "react";
 import {Button} from "react-bootstrap";
 import MediaCard from "../components/MediaCard";
-import {Resource} from "../interfaces";
+import {MediaResource} from "../interfaces";
 
 const pageSize = 10;
 
 function SearchPage(): JSX.Element {
-  const [mediaElements, setMediaElements] = useState<Resource[]>([]);
+  const [mediaElements, setMediaElements] = useState<MediaResource[]>([]);
+  const [searchFieldContent, setSearchFieldContent] = useState("");
   const [query, setQuery] = useState("");
   const [startIndex, setStartIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -31,11 +32,13 @@ function SearchPage(): JSX.Element {
   }, [query]);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setQuery(e.target.value);
+    setSearchFieldContent(e.target.value);
   }
 
   function handleSearch() {
+    setQuery(searchFieldContent);
     setStartIndex(0);
+    setMediaElements([]);
   }
 
   return (

@@ -1,8 +1,8 @@
 import React from "react";
-import {Resource} from "../interfaces";
+import {MediaResource} from "../interfaces";
 import {Card} from "react-bootstrap";
 
-function MediaCard(props: Resource): JSX.Element {
+function MediaCard(props: MediaResource): JSX.Element {
   return (
     <Card className="media-card">
       {props.type.includes("video") && <video src={props.privateUrl} />}

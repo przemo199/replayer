@@ -14,7 +14,7 @@ function App() {
         <header className="App-header">
           <NavBar />
           <Switch>
-            <Route path="/watch">
+            <Route path="/watch/:id">
               <MediaViewer />
             </Route>
             <Route path="/upload">

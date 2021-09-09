@@ -1,6 +1,6 @@
 import {ObjectId} from "mongodb";
 
-export interface Resource {
+export interface MediaResource {
   _id: ObjectId;
   privateUrl: string;
   name: string;
