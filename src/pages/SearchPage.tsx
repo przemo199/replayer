@@ -13,7 +13,7 @@ function SearchPage(): JSX.Element {
   useEffect(() => {
     async function fetchData() {
       setIsLoading(true);
-      const request = await fetch("/search", {
+      const request = await fetch("/api/search", {
         method: "POST",
         body: JSON.stringify({query: query, startIndex: startIndex, endIndex: startIndex + pageSize})
       });
