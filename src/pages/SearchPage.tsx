@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import {Button} from "react-bootstrap";
 import MediaCard from "../components/MediaCard";
 import {Resource} from "../interfaces";
 
@@ -39,7 +40,8 @@ function SearchPage(): JSX.Element {
 
   return (
     <React.Fragment>
-      <input type="text" onChange={handleChange}/>
+      <input type="text" onChange={handleChange} />
+      <Button onClick={handleSearch}>Search</Button>
 
       {mediaElements.map(element => <MediaCard key={element._id.toString()} {...element} />)}
 
