@@ -39,7 +39,7 @@ function MediaViewer(): JSX.Element {
   };
 
   return (
-    <React.Fragment>
+    <div style={{backgroundColor: "rgb(33, 37, 41)"}}>
       {resource?.type.includes("image") &&
         <img className="media" src={resource.privateUrl} alt="requested image"/>}
       {resource?.type.includes("video") &&
@@ -59,7 +59,7 @@ function MediaViewer(): JSX.Element {
       }
       {!resource && !isLoading && <h1>It looks like the resource you are looking for does not exist</h1>}
       {!resource && isLoading && <h1>Loading...</h1>}
-    </React.Fragment>
+    </div>
   );
 }
 
