@@ -4,7 +4,7 @@ import App from "../App";
 
 
 describe("welcome screen tests", () => {
-  beforeAll(() => {
+  beforeEach(() => {
     render(<App />);
   });
 
@@ -14,14 +14,12 @@ describe("welcome screen tests", () => {
   });
 
   test("renders Welcome screen correct", () => {
-    render(<App />);
-    const navElement = screen.getByText("Welcome!");
-    expect(navElement).toBeInTheDocument();
+    const welcomeElement = screen.getByText("Welcome!");
+    expect(welcomeElement).toBeInTheDocument();
   });
 
   test("renders link to source of this project correct", () => {
-    render(<App />);
-    const navElement = screen.getByText("here");
-    expect(navElement).toBeInTheDocument();
+    const linkElement = screen.getByText("here");
+    expect(linkElement).toBeInTheDocument();
   });
 });

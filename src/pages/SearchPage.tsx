@@ -44,16 +44,14 @@ function SearchPage(): JSX.Element {
 
   return (
     <React.Fragment>
-      <Form.Control className="top" type="text" onChange={handleChange}/>
-      {/*<input className="top" type="text" onChange={handleChange} />*/}
-      <Button onClick={handleSearch}>Search</Button>
+      <div className="top">
+        <Form.Control className="m-1" type="text" onChange={handleChange}/>
+        <Button className="m-1" onClick={handleSearch}>Search</Button>
+      </div>
 
       <div className="media-flex-container">
-
         {mediaElements.map(element => <MediaCard key={element._id.toString()} {...element} />)}
-
         {isLoading && <h1>Loading...</h1>}
-
       </div>
     </React.Fragment>
   );

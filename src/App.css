@@ -28,6 +28,7 @@
   height: 31.5vw;
   cursor: pointer;
   margin: 15px;
+  background-color: rgb(33, 37, 41);
 }
 
 .file-selector {
@@ -88,6 +89,8 @@
 .media-flex-container {
   display: flex;
   flex-wrap: wrap;
+  margin-top: 1rem;
+  margin-bottom: auto;
 }
 
 .media-card {
@@ -97,5 +100,7 @@
 }
 
 .top {
-  vertical-align: top;
+  width: 60%;
+  display: flex;
+  margin-top: 5rem;
 }

@@ -7,7 +7,7 @@ import MediaViewer from "./pages/MediaViewer";
 import WelcomePage from "./pages/WelcomePage";
 import SearchPage from "./pages/SearchPage";
 
-function App() {
+function App(): JSX.Element {
   return (
     <Router>
       <div className="App">
