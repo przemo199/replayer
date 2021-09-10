@@ -22,7 +22,7 @@ function SearchPage(): JSX.Element {
 
       if (request.status === 200) {
         const response = await request.json();
-        setMediaElements(response.documents);
+        setMediaElements(response.documents === null ? [] : response.documents);
         setStartIndex(startIndex + pageSize);
       }
 
