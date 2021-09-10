@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Button} from "react-bootstrap";
+import {Button, Form} from "react-bootstrap";
 import MediaCard from "../components/MediaCard";
 import {MediaResource} from "../interfaces";
 
@@ -25,6 +25,7 @@ function SearchPage(): JSX.Element {
         setMediaElements(response.documents);
         setStartIndex(startIndex + pageSize);
       }
+
       setIsLoading(false);
     }
 
@@ -43,7 +44,8 @@ function SearchPage(): JSX.Element {
 
   return (
     <React.Fragment>
-      <input type="text" onChange={handleChange} />
+      <Form.Control className="top" type="text" onChange={handleChange}/>
+      {/*<input className="top" type="text" onChange={handleChange} />*/}
       <Button onClick={handleSearch}>Search</Button>
 
       <div className="media-flex-container">

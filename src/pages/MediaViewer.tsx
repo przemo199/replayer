@@ -31,7 +31,7 @@ function MediaViewer(): JSX.Element {
 
   const getReadableDate = (resource: MediaResource): string => {
     const date = (new Date(parseInt(resource._id.toString().substring(0,8), 16) * 1000)).toISOString();
-    return date.substring(0, 20).replace(/[A-Z]/, " ");
+    return date.substring(0, 19).replace(/[A-Z]/, " ").replace("-", "/");
   };
 
   const calculateFileSize = (r: MediaResource): string  => {
@@ -46,15 +46,15 @@ function MediaViewer(): JSX.Element {
         <video className="media" src={resource.privateUrl} autoPlay controls/>}
       {resource &&
         <div>
-          <p className="inline">File name: {resource.name} </p>
+          <p className="inline">File name: {resource.name}</p>
           &nbsp;
           &nbsp;
-          <p className="inline">File type: {resource.type} </p>
+          <p className="inline">File type: {resource.type}</p>
           <br />
-          <p className="inline">File size: {calculateFileSize(resource)} </p>
+          <p className="inline">File size: {calculateFileSize(resource)}</p>
           &nbsp;
           &nbsp;
-          <p className="inline">Upload timestamp: {getReadableDate(resource)} </p>
+          <p className="inline">Upload timestamp: {getReadableDate(resource)}</p>
         </div>
       }
       {!resource && !isLoading && <h1>It looks like the resource you are looking for does not exist</h1>}

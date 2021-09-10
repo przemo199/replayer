@@ -95,3 +95,7 @@
   background-color: rgb(35, 35, 35);
   margin: 2px;
 }
+
+.top {
+  vertical-align: top;
+}
