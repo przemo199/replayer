@@ -1,0 +1,14 @@
+.card-preview {
+  height: 50%;
+  object-fit: contain;
+}
+
+.card-body {
+  text-decoration: none;
+  color: white;
+  margin: auto 5px 5px;
+}
+
+.text {
+  font-size: 0.9rem;
+}

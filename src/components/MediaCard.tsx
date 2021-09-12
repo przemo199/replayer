@@ -2,6 +2,7 @@ import React from "react";
 import {Card} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {MediaResource} from "../interfaces";
+import "./MediaCard.css";
 
 function MediaCard(props: MediaResource): JSX.Element {
   const getReadableDate = (resource: MediaResource): string => {
@@ -11,12 +12,11 @@ function MediaCard(props: MediaResource): JSX.Element {
 
   return (
     <Card className="media-card" style={{display: "flex"}}>
-      {props.type.includes("video") && <video src={props.privateUrl} />}
-      {props.type.includes("image") && <img alt={props.name} src={props.privateUrl} />}
-      <Link to={`/watch/${props.resourceId}`} style={{textDecoration: "none", color: "white",
-        margin: "5px", marginTop: "auto"}}>
+      {props.type.includes("video") && <video className="card-preview" src={props.privateUrl} />}
+      {props.type.includes("image") && <img className="card-preview" alt={props.name} src={props.privateUrl} />}
+      <Link to={`/watch/${props.resourceId}`} className="card-body">
         <Card.Title>{props.name}</Card.Title>
-        <Card.Text style={{fontSize: "0.9rem"}}>Uploaded on: {getReadableDate(props)}</Card.Text>
+        <Card.Text className="text">Uploaded on: {getReadableDate(props)}</Card.Text>
       </Link>
     </Card>
   );
