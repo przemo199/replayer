@@ -93,12 +93,6 @@
   font-size: 0.7em;
 }
 
-.media-card {
-  width: 12rem;
-  background-color: rgb(33, 37, 41);
-  margin: 2px;
-}
-
 .top {
   width: 60%;
   display: flex;

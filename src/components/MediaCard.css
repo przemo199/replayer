@@ -1,3 +1,10 @@
+.media-card {
+  width: 12rem;
+  background-color: rgb(33, 37, 41);
+  margin: 2px;
+  display: flex;
+}
+
 .card-preview {
   height: 50%;
   object-fit: contain;

@@ -11,7 +11,7 @@ function MediaCard(props: MediaResource): JSX.Element {
   };
 
   return (
-    <Card className="media-card" style={{display: "flex"}}>
+    <Card className="media-card">
       {props.type.includes("video") && <video className="card-preview" src={props.privateUrl} />}
       {props.type.includes("image") && <img className="card-preview" alt={props.name} src={props.privateUrl} />}
       <Link to={`/watch/${props.resourceId}`} className="card-body">
