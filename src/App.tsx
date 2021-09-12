@@ -20,7 +20,7 @@ function App(): JSX.Element {
             <Route path="/upload">
               <UploadPage />
             </Route>
-            <Route path="/browse">
+            <Route path="/search">
               <SearchPage />
             </Route>
             <Route path="/">
