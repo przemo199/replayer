@@ -68,10 +68,6 @@
   margin-bottom: auto;
 }
 
-.media-flex-container > a {
-  color: white;
-}
-
 .navbar {
   width: 100vw;
   position: fixed !important;
