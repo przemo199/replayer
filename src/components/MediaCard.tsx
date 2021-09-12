@@ -14,7 +14,7 @@ function MediaCard(props: MediaResource): JSX.Element {
       {props.type.includes("video") && <video src={props.privateUrl} />}
       {props.type.includes("image") && <img alt={props.name} src={props.privateUrl} />}
       <Link to={`/watch/${props.resourceId}`} style={{textDecoration: "none", color: "white",
-        margin: "5px", marginBottom: "auto"}}>
+        margin: "5px", marginTop: "auto"}}>
         <Card.Title>{props.name}</Card.Title>
         <Card.Text style={{fontSize: "0.9rem"}}>Uploaded on: {getReadableDate(props)}</Card.Text>
       </Link>
