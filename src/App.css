@@ -39,7 +39,7 @@
   width: 60vw;
   height: 34vw;
   object-fit: contain;
-  margin-top: calc(16px + 1.5em);
+  margin: 15px;
 }
 
 .selected-media {
