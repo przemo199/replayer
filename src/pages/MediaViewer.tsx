@@ -39,7 +39,7 @@ function MediaViewer(): JSX.Element {
   };
 
   return (
-    <div style={{backgroundColor: "rgb(33, 37, 41)"}}>
+    <div style={{backgroundColor: "rgb(33, 37, 41)", padding: "15px", marginTop: "2rem"}}>
       {resource?.type.includes("image") &&
         <img className="media" src={resource.privateUrl} alt="requested image"/>}
       {resource?.type.includes("video") &&
