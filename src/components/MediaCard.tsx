@@ -1,14 +1,11 @@
 import React, {MouseEvent} from "react";
 import {Card} from "react-bootstrap";
 import {Link} from "react-router-dom";
+import {getReadableDate} from "../utils";
 import {MediaResource} from "../interfaces";
 import "./MediaCard.css";
 
 function MediaCard(props: MediaResource): JSX.Element {
-  const getReadableDate = (resource: MediaResource): string => {
-    const date = (new Date(parseInt(resource._id.toString().substring(0,8), 16) * 1000)).toISOString();
-    return date.substring(0, 19).replace(/[A-Z]/, " ").replaceAll("-", "/");
-  };
 
   const playVideo = (e: MouseEvent<HTMLVideoElement>) => {
     e.currentTarget.play();

@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import {render, screen} from "@testing-library/react";
 import App from "../App";
 
 
@@ -8,12 +8,12 @@ describe("welcome screen tests", () => {
     render(<App />);
   });
 
-  test("renders replayer link correct", () => {
+  test("renders replayer link correctly", () => {
     const logoElement = screen.getByText("replayer");
     expect(logoElement).toBeInTheDocument();
   });
 
-  test("renders Welcome screen correct", () => {
+  test("renders Welcome screen correctly", () => {
     const welcomeElement = screen.getByText("Welcome!");
     expect(welcomeElement).toBeInTheDocument();
   });

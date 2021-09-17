@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
+import {getReadableDate} from "../utils";
 import {MediaResource} from "../interfaces";
 
 const apiGetEndpoint = "/api/get";
@@ -28,11 +29,6 @@ function MediaViewer(): JSX.Element {
 
     fetchMediaResource();
   }, [id]);
-
-  const getReadableDate = (resource: MediaResource): string => {
-    const date = (new Date(parseInt(resource._id.toString().substring(0,8), 16) * 1000)).toISOString();
-    return date.substring(0, 19).replace(/[A-Z]/, " ").replaceAll("-", "/");
-  };
 
   const calculateFileSize = (r: MediaResource): string  => {
     return (Math.round(r.size / (1024 * 1024) * 100)) / 100 + "MB";
