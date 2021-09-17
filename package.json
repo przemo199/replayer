@@ -42,16 +42,16 @@
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^22.0.0"
   },
+  "engines": {
+    "node": ">=16.x.x",
+    "npm": ">=7.x.x"
+  },
   "private": true,
   "scripts": {
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "start": "react-scripts start",
     "test": "react-scripts test"
-  },
-  "engines": {
-    "node": ">=16.x.x",
-    "npm": ">=7.x.x"
   },
   "stylelint": {
     "extends": "stylelint-config-standard"
