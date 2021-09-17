@@ -49,6 +49,10 @@
     "start": "react-scripts start",
     "test": "react-scripts test"
   },
+  "engines": {
+    "node": ">=16.x.x",
+    "npm": ">=7.x.x"
+  },
   "stylelint": {
     "extends": "stylelint-config-standard"
   }
