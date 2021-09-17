@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 
-const imageSizeLimit = 10 * 1000 * 1000;
-const videoSizeLimit = 100 * 1000 * 1000;
+const imageSizeLimit = 10 * 1000 * 1000; // 10MB
+const videoSizeLimit = 100 * 1000 * 1000; // 100MB
 
 function MediaShowcase(props: { file: File }): JSX.Element {
   const [fileContent, setFileContent] = useState<string | null>(null);

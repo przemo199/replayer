@@ -1,0 +1,25 @@
+.navbar {
+  width: 100vw;
+  position: fixed !important;
+  top: 0;
+  padding: 8px 0 8px 0;
+  display: flex;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin: 0 0 0 25px;
+  padding: 0 7px 0 7px;
+  border-radius: 4px;
+}
+
+.navbar a:hover {
+  color: lightgrey;
+  background-color: black;
+}
+
+.navbar div {
+  margin-left: auto;
+  margin-right: 1rem;
+}
