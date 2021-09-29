@@ -36,24 +36,19 @@ function SearchPage(): JSX.Element {
     setSearchFieldContent(e.target.value);
   }
 
-  function handleSearch() {
+  function handleSearch(e: React.FormEvent) {
+    e.preventDefault();
     setQuery(searchFieldContent);
     setStartIndex(0);
     setMediaElements([]);
   }
 
-  function returnFalse() {
-    return false;
-  }
-
   return (
     <React.Fragment>
-      <div className="top">
-        <form onSubmit={() => false}>
-          <Form.Control className="m-1" type="text" onChange={handleChange}/>
-          <Button type="submit" className="m-1" onClick={handleSearch}>Search</Button>
-        </form>
-      </div>
+      <form className="top" onSubmit={handleSearch}>
+        <Form.Control className="m-1" type="text" onChange={handleChange}/>
+        <Button type="submit" className="m-1">Search</Button>
+      </form>
 
       <div className="media-flex-container">
         {mediaElements.map(element => <MediaCard key={element._id.toString()} {...element} />)}
