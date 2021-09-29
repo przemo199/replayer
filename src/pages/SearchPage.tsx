@@ -42,11 +42,17 @@ function SearchPage(): JSX.Element {
     setMediaElements([]);
   }
 
+  function returnFalse() {
+    return false;
+  }
+
   return (
     <React.Fragment>
       <div className="top">
-        <Form.Control className="m-1" type="text" onChange={handleChange}/>
-        <Button className="m-1" onClick={handleSearch}>Search</Button>
+        <form onSubmit={() => false}>
+          <Form.Control className="m-1" type="text" onChange={handleChange}/>
+          <Button type="submit" className="m-1" onClick={handleSearch}>Search</Button>
+        </form>
       </div>
 
       <div className="media-flex-container">
