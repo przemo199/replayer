@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from "react";
+import "./MediaShowcase.css";
 
 const imageSizeLimit = 10 * 1000 * 1000; // 10MB
 const videoSizeLimit = 100 * 1000 * 1000; // 100MB
 
 function MediaShowcase(props: { file: File }): JSX.Element {
-  const [fileContent, setFileContent] = useState<string | null>(null);
+  const [fileContent, setFileContent] = useState<string>("");
 
   useEffect(() => {
     getFileContent();
@@ -27,7 +28,7 @@ function MediaShowcase(props: { file: File }): JSX.Element {
     if (props.file.size < imageSizeLimit) {
       return (
         <React.Fragment>
-          {fileContent && <img className="selected-media" src={fileContent} alt="selected media"/>}
+          {fileContent != "" && <img className="selected-media" src={fileContent} alt="selected media"/>}
           {!fileContent && <h1>Loading...</h1>}
         </React.Fragment>
       );

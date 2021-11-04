@@ -41,25 +41,31 @@ function UploadPage(): JSX.Element {
         body: formData
       });
 
-      const response = await request.json();
+      if (request.ok) {
 
-      if (response.asset_id) {
-        const req = await fetch(apiPutEndpoint, {
-          method: "POST",
-          body: JSON.stringify({
-            privateUrl: response.secure_url,
-            name: file.name,
-            type: file.type,
-            size: file.size
-          })
-        });
 
-        const res = await req.json();
+        const response = await request.json();
 
-        setFileUrl("/watch/" + res.resourceId);
-        setFile(null);
-        const end = (new Date()).getTime();
-        console.log("Uploaded in " + (end - start) + "ms");
+        if (response.asset_id) {
+          const req = await fetch(apiPutEndpoint, {
+            method: "POST",
+            body: JSON.stringify({
+              privateUrl: response.secure_url,
+              name: file.name,
+              type: file.type,
+              size: file.size
+            })
+          });
+
+          const res = await req.json();
+
+          setFileUrl("/watch/" + res.resourceId);
+          setFile(null);
+          const end = (new Date()).getTime();
+          console.log("Uploaded in " + (end - start) + "ms");
+        }
+      } else {
+        alert(`Upload error\n${request.status} ${request.statusText}`);
       }
       setIsUploading(false);
     }
