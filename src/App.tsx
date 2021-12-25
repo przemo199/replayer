@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import UploadPage from "./pages/UploadPage";
@@ -13,20 +13,12 @@ function App(): JSX.Element {
       <div className="App">
         <header className="App-header">
           <NavBar />
-          <Switch>
-            <Route path="/watch/:id">
-              <MediaViewer />
-            </Route>
-            <Route path="/upload">
-              <UploadPage />
-            </Route>
-            <Route path="/search">
-              <SearchPage />
-            </Route>
-            <Route path="/">
-              <WelcomePage />
-            </Route>
-          </Switch>
+          <Routes>
+            <Route path="/watch/:id" element={<MediaViewer />} />
+            <Route path="/upload" element={<UploadPage />} />
+            <Route path="/search" element={<SearchPage />} />
+            <Route path="/" element={<WelcomePage />} />
+          </Routes>
         </header>
       </div>
     </Router>
